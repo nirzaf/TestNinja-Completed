@@ -4,10 +4,7 @@
     {
         public ActionResult GetCustomer(int id)
         {
-            if (id == 0)
-                return new NotFound();
-            
-            return new Ok();
+            return id == 0 ? (ActionResult) new NotFound() : new Ok();
         }        
     }
     

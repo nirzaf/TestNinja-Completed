@@ -11,13 +11,15 @@ namespace TestNinja.Fundamentals
         {
             if (speed < 0 || speed > MaxSpeed) 
                 throw new ArgumentOutOfRangeException();
-            
-            if (speed <= SpeedLimit) return 0; 
-            
-            const int kmPerDemeritPoint = 5;
-            var demeritPoints = (speed - SpeedLimit)/kmPerDemeritPoint;
 
-            return demeritPoints;
+            if (speed > SpeedLimit)
+            {
+                const int kmPerDemeritPoint = 5;
+                var demeritPoints = (speed - SpeedLimit) / kmPerDemeritPoint;
+                return demeritPoints;
+            }
+
+            return 0;
         }        
     }
 }
