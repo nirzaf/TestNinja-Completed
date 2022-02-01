@@ -20,8 +20,8 @@ namespace TestNinja.Mocking
         
         public string ReadVideoTitle()
         {
-            var str = _fileReader.Read("video.txt");
-            var video = JsonConvert.DeserializeObject<Video>(str);
+            string str = _fileReader.Read("video.txt");
+            Video video = JsonConvert.DeserializeObject<Video>(str);
             if (video == null)
                 return "Error parsing the video.";
             return video.Title;
@@ -29,10 +29,10 @@ namespace TestNinja.Mocking
 
         public string GetUnprocessedVideosAsCsv()
         {
-            var videoIds = new List<int>();
+            List<int> videoIds = new List<int>();
 
-            var videos = _repository.GetUnprocessedVideos();                            
-            foreach (var v in videos)
+            IEnumerable<Video> videos = _repository.GetUnprocessedVideos();                            
+            foreach (Video v in videos)
                 videoIds.Add(v.Id);
 
             return String.Join(",", videoIds);

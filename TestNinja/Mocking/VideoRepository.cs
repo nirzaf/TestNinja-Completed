@@ -12,9 +12,9 @@ namespace TestNinja.Mocking
     {
         public IEnumerable<Video> GetUnprocessedVideos()
         {
-            using (var context = new VideoContext())
+            using (VideoContext context = new VideoContext())
             {
-                var videos = 
+                List<Video> videos = 
                 (from video in context.Videos
                     where !video.IsProcessed
                     select video).ToList();

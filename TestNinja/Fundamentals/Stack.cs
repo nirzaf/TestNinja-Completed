@@ -13,7 +13,6 @@ namespace TestNinja.Fundamentals
         {
             if (obj == null)
                 throw new ArgumentNullException();
-            
             _list.Add(obj);
         }
 
@@ -21,10 +20,8 @@ namespace TestNinja.Fundamentals
         {
             if (_list.Count == 0)
                 throw new InvalidOperationException();
-
-            var result = _list[_list.Count - 1];
+            T result = _list[_list.Count - 1];
             _list.RemoveAt(_list.Count - 1);
-
             return result; 
         }
 
@@ -33,7 +30,6 @@ namespace TestNinja.Fundamentals
         {
             if (_list.Count == 0)
                 throw new InvalidOperationException();
-
             return _list[_list.Count - 1];
         }
     }

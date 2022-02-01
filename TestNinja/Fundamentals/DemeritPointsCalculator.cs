@@ -15,7 +15,7 @@ namespace TestNinja.Fundamentals
             if (speed > SpeedLimit)
             {
                 const int kmPerDemeritPoint = 5;
-                var demeritPoints = (speed - SpeedLimit) / kmPerDemeritPoint;
+                int demeritPoints = (speed - SpeedLimit) / kmPerDemeritPoint;
                 return demeritPoints;
             }
 

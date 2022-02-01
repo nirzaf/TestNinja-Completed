@@ -16,7 +16,7 @@
         
         public void DeleteEmployee(int id)
         {
-            var employee = _db.Employees.Find(id);
+            Employee employee = _db.Employees.Find(id);
             if (employee == null) return; 
             _db.Employees.Remove(employee);
             _db.SaveChanges();

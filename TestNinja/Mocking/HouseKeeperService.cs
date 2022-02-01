@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -27,20 +28,20 @@ namespace TestNinja.Mocking
         
         public void SendStatementEmails(DateTime statementDate)
         {
-            var housekeepers = _unitOfWork.Query<Housekeeper>();
+            IQueryable<Housekeeper> housekeepers = _unitOfWork.Query<Housekeeper>();
 
-            foreach (var housekeeper in housekeepers)
+            foreach (Housekeeper housekeeper in housekeepers)
             {
                 if (String.IsNullOrWhiteSpace(housekeeper.Email)) 
                     continue;
 
-                var statementFilename = _statementGenerator.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate);
+                string statementFilename = _statementGenerator.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate);
 
                 if (string.IsNullOrWhiteSpace(statementFilename))
                     continue;
 
-                var emailAddress = housekeeper.Email;
-                var emailBody = housekeeper.StatementEmailBody;
+                string emailAddress = housekeeper.Email;
+                string emailBody = housekeeper.StatementEmailBody;
 
                 try
                 {

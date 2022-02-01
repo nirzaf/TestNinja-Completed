@@ -11,8 +11,8 @@ namespace TestNinja.Mocking
             if (booking.Status == "Cancelled")
                 return string.Empty;
 
-            var bookings = repository.GetActiveBookings(booking.Id);
-            var overlappingBooking =
+            IQueryable<Booking> bookings = repository.GetActiveBookings(booking.Id);
+            Booking overlappingBooking =
                 bookings.FirstOrDefault(
                     b =>
                         booking.ArrivalDate < b.DepartureDate &&

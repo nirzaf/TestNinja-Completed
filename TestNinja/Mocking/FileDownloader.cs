@@ -11,7 +11,7 @@ namespace TestNinja.Mocking
     {
         public void DownloadFile(string url, string path)
         {
-            var client = new WebClient();
+            WebClient client = new WebClient();
             client.DownloadFile(url, path);            
         }
     }

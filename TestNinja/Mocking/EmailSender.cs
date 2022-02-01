@@ -14,7 +14,7 @@ namespace TestNinja.Mocking
     {
         public void EmailFile(string emailAddress, string emailBody, string filename, string subject)
         {
-            var client = new SmtpClient(SystemSettingsHelper.EmailSmtpHost)
+            SmtpClient client = new SmtpClient(SystemSettingsHelper.EmailSmtpHost)
             {
                 Port = SystemSettingsHelper.EmailPort,
                 Credentials =
@@ -23,11 +23,11 @@ namespace TestNinja.Mocking
                         SystemSettingsHelper.EmailPassword)
             };
 
-            var from = new MailAddress(SystemSettingsHelper.EmailFromEmail, SystemSettingsHelper.EmailFromName,
+            MailAddress from = new MailAddress(SystemSettingsHelper.EmailFromEmail, SystemSettingsHelper.EmailFromName,
                 Encoding.UTF8);
-            var to = new MailAddress(emailAddress);
+            MailAddress to = new MailAddress(emailAddress);
 
-            var message = new MailMessage(from, to)
+            MailMessage message = new MailMessage(from, to)
             {
                 Subject = subject,
                 SubjectEncoding = Encoding.UTF8,

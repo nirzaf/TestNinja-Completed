@@ -11,8 +11,8 @@ namespace TestNinja.Mocking
     {
         public IQueryable<Booking> GetActiveBookings(int? excludedBookingId = null)
         {
-            var unitOfWork = new UnitOfWork();
-            var bookings =
+            UnitOfWork unitOfWork = new UnitOfWork();
+            IQueryable<Booking> bookings =
                 unitOfWork.Query<Booking>()
                     .Where(
                         b =>  b.Status != "Cancelled");
